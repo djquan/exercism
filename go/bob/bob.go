@@ -18,9 +18,8 @@ func Hey(remark string) string {
 	case hasLetters && strings.ToUpper(trimmedRemark) == trimmedRemark:
 		if isQuestion {
 			return "Calm down, I know what I'm doing!"
-		} else {
-			return "Whoa, chill out!"
 		}
+		return "Whoa, chill out!"
 	case isQuestion:
 		return "Sure."
 	default:
