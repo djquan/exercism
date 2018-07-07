@@ -3,11 +3,11 @@ package reverse
 
 // String reverses a given String.
 func String(s string) string {
-	in := []rune(s)
-	out := make([]rune, len(in))
+	out := []rune(s)
+	n := len(out)
 
-	for i, r := range in {
-		out[len(in)-i-1] = r
+	for i := 0; i < n/2; i++ {
+		out[i], out[n-1-i] = out[n-1-i], out[i]
 	}
 
 	return string(out)
