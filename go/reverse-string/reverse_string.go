@@ -7,7 +7,8 @@ func String(s string) string {
 	n := len(out)
 
 	for i := 0; i < n/2; i++ {
-		out[i], out[n-1-i] = out[n-1-i], out[i]
+		j := n - 1 - i
+		out[i], out[j] = out[j], out[i]
 	}
 
 	return string(out)
