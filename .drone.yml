@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: registry.quan.io/library/golang-testing
+    image: registry.quan.io/dan/golang-testing
     commands:
       - go test ./go/...
       - golint -set_exit_status go/...
