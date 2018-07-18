@@ -6,52 +6,34 @@ import (
 )
 
 // Clock type maintains a representation of a clock
-type Clock struct {
-	h int
-	m int
-}
+type Clock int
+
+const minutesInDay = 1440
 
 // New creates a new clock given hour and minutes
 func New(h int, m int) Clock {
-	h, m = normalize(h, m)
-	return Clock{h, m}
+	c := (h*60 + m) % minutesInDay
+
+	for c < 0 {
+		c += minutesInDay
+	}
+
+	return Clock(c)
 }
 
 // Add adds minutes onto a clock
 func (c Clock) Add(m int) Clock {
-	hour, minute := normalize(c.h, c.m+m)
-	return Clock{hour, minute}
+	return New(0, int(c)+m)
 }
 
 // Subtract removes minutes from a clock
 func (c Clock) Subtract(m int) Clock {
-	hour, minute := normalize(c.h, c.m-m)
-	return Clock{hour, minute}
+	return New(0, int(c)-m)
 }
 
 // String provides a string version of a clock
 func (c Clock) String() string {
-	return fmt.Sprintf("%02d:%02d", c.h, c.m)
-}
-
-func normalize(h int, m int) (int, int) {
-	for m >= 60 {
-		m -= 60
-		h++
-	}
-
-	for m < 0 {
-		m += 60
-		h--
-	}
-
-	for h >= 24 {
-		h -= 24
-	}
-
-	for h < 0 {
-		h += 24
-	}
-
-	return h, m
+	h := int(c) / 60
+	m := int(c) % 60
+	return fmt.Sprintf("%02d:%02d", h, m)
 }
