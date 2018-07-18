@@ -1,27 +1,22 @@
 package letter
 
-import (
-	"sync"
-)
-
 // ConcurrentFrequency calculates the letter frequency in an array of strings
 func ConcurrentFrequency(input []string) FreqMap {
-	freqMap := FreqMap{}
-	mutex := &sync.Mutex{}
-	wg := &sync.WaitGroup{}
+	c := make(chan FreqMap)
 
-	for _, s := range input {
-		wg.Add(1)
-		go func(s string) {
-			for _, r := range s {
-				mutex.Lock()
-				freqMap[r]++
-				mutex.Unlock()
-			}
-			wg.Done()
-		}(s)
+	for _, t := range input {
+		go func(t string) {
+			c <- Frequency(t)
+		}(t)
 	}
 
-	wg.Wait()
+	freqMap := FreqMap{}
+
+	for range input {
+		for k, v := range <-c {
+			freqMap[k] += v
+		}
+	}
+
 	return freqMap
 }
