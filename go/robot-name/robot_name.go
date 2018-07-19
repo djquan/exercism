@@ -25,7 +25,13 @@ func (r *Robot) Name() string {
 	if r.name != "" {
 		return r.name
 	}
+	r.Reset()
 
+	return r.name
+}
+
+//Reset removes a robots old name and generates a new one.
+func (r *Robot) Reset() {
 	name := fmt.Sprintf("%c%c%d%d%d",
 		letters[rand.Intn(len(letters))],
 		letters[rand.Intn(len(letters))],
@@ -35,16 +41,9 @@ func (r *Robot) Name() string {
 	)
 
 	if names[name] == true {
-		return r.Name()
+		r.Reset()
+	} else {
+		r.name = name
+		names[name] = true
 	}
-
-	r.name = name
-	names[name] = true
-	return r.name
-}
-
-//Reset removes a robots old name and generates a new one.
-func (r *Robot) Reset() {
-	r.name = ""
-	r.Name()
 }
