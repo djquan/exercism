@@ -38,7 +38,7 @@ func (l IntList) Length() int {
 	return len(l)
 }
 
-// Mapped returns an IntList with the input function applied to every value
+// Map returns an IntList with the input function applied to every value
 func (l IntList) Map(fn unaryFunc) IntList {
 	mapped := make(IntList, l.Length())
 	for i, v := range l {
