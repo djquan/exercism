@@ -1,5 +1,6 @@
 package listops
 
+// IntList provides a type for dealing with an []int
 type IntList []int
 type predFunc func(int) bool
 type unaryFunc func(int) int
