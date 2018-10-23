@@ -1,15 +1,10 @@
-use std::collections::BTreeMap;
+static SOUND_MAP: [(u32, &str);3] = [(3, "Pling"), (5, "Plang"), (7, "Plong")];
 
 pub fn raindrops(n: u32) -> String {
     let mut sounds = Vec::new();
-    let mut sound_map = BTreeMap::new();
-    sound_map.insert(3, "Pling");
-    sound_map.insert(5, "Plang");
-    sound_map.insert(7, "Plong");
-
-    for (drops, sound) in sound_map {
+    for (drops, sound) in SOUND_MAP.iter() {
         if n % drops == 0 {
-            sounds.push(sound);
+            sounds.push(*sound);
         }
     }
 
