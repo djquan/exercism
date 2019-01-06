@@ -21,13 +21,13 @@ type Robot struct {
 /*Name generates a name for a robot if it does not have one.
 Returns it's name if it does have one.
 */
-func (r *Robot) Name() string {
+func (r *Robot) Name() (string, error) {
 	if r.name != "" {
-		return r.name
+		return r.name, nil
 	}
 	r.Reset()
 
-	return r.name
+	return r.name, nil
 }
 
 //Reset removes a robots old name and generates a new one.
