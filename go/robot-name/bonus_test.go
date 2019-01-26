@@ -7,7 +7,7 @@ func TestCollisions(t *testing.T) {
 	// Test uniqueness for new robots.
 	// 10k should be plenty to catch names generated
 	// randomly without a uniqueness check.
-	for i := 0; i < 10000; i++ {
+	for i := 0; i < 100000; i++ {
 		n, err := New().Name()
 		if err != nil {
 			t.Fatalf("Name() returned unexpected error: %v", err)
@@ -19,7 +19,7 @@ func TestCollisions(t *testing.T) {
 	}
 	// Test that names aren't recycled either.
 	r := New()
-	for i := 0; i < 10000; i++ {
+	for i := 0; i < 100000; i++ {
 		r.Reset()
 		n, err := r.Name()
 		if err != nil {

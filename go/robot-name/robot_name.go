@@ -25,25 +25,27 @@ func (r *Robot) Name() (string, error) {
 	if r.name != "" {
 		return r.name, nil
 	}
-	r.Reset()
+
+	name := generateName()
+	for names[name] {
+		name = generateName()
+	}
+
+	r.name = name
+	names[name] = true
 
 	return r.name, nil
 }
 
-//Reset removes a robots old name and generates a new one.
+//Reset removes a robots old name
 func (r *Robot) Reset() {
-	name := fmt.Sprintf("%c%c%d%d%d",
-		letters[rand.Intn(len(letters))],
-		letters[rand.Intn(len(letters))],
-		rand.Intn(9),
-		rand.Intn(9),
-		rand.Intn(9),
-	)
+	r.name = ""
+}
 
-	if names[name] == true {
-		r.Reset()
-	} else {
-		r.name = name
-		names[name] = true
-	}
+func generateName() string {
+	return fmt.Sprintf("%c%c%03d",
+		rand.Intn(26)+'A',
+		rand.Intn(26)+'A',
+		rand.Intn(1000),
+	)
 }
