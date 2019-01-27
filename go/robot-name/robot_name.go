@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const MaxNames = 26 * 26 * 1000
+const maxNames = 26 * 26 * 1000
 
 var names = map[string]bool{"": true}
 
@@ -28,7 +28,7 @@ func (r *Robot) Name() (string, error) {
 	}
 
 	for names[r.name] {
-		if len(names) > MaxNames {
+		if len(names) > maxNames {
 			return "", fmt.Errorf("No more possible names to generate")
 		}
 
