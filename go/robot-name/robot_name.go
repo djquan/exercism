@@ -6,8 +6,9 @@ import (
 	"time"
 )
 
-var letters = []rune("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-var names = make(map[string]bool)
+const MaxNames = 26 * 26 * 1000
+
+var names = map[string]bool{"": true}
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
@@ -26,26 +27,23 @@ func (r *Robot) Name() (string, error) {
 		return r.name, nil
 	}
 
-	name := generateName()
-	for names[name] {
-		name = generateName()
+	for names[r.name] {
+		if len(names) > MaxNames {
+			return "", fmt.Errorf("No more possible names to generate")
+		}
+
+		r.name = fmt.Sprintf("%c%c%03d",
+			rand.Intn(26)+'A',
+			rand.Intn(26)+'A',
+			rand.Intn(1000),
+		)
 	}
 
-	r.name = name
-	names[name] = true
-
+	names[r.name] = true
 	return r.name, nil
 }
 
 //Reset removes a robots old name
 func (r *Robot) Reset() {
 	r.name = ""
-}
-
-func generateName() string {
-	return fmt.Sprintf("%c%c%03d",
-		rand.Intn(26)+'A',
-		rand.Intn(26)+'A',
-		rand.Intn(1000),
-	)
 }
