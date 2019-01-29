@@ -27,11 +27,11 @@ func (r *Robot) Name() (string, error) {
 		return r.name, nil
 	}
 
-	for names[r.name] {
-		if len(names) > maxNames {
-			return "", fmt.Errorf("No more possible names to generate")
-		}
+	if len(names) > maxNames {
+		return "", fmt.Errorf("No more possible names to generate")
+	}
 
+	for names[r.name] {
 		r.name = fmt.Sprintf("%c%c%03d",
 			rand.Intn(26)+'A',
 			rand.Intn(26)+'A',
