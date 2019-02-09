@@ -2,7 +2,7 @@
 package tournament
 
 import (
-	"bytes"
+	"bufio"
 	"fmt"
 	"io"
 	"sort"
@@ -31,10 +31,10 @@ var fmtString = "%-31s| %2d | %2d | %2d | %2d | %2d\n"
 // Tally calculates the outcome of a tournament
 func Tally(reader io.Reader, writer io.Writer) error {
 	teams := make(map[string]team)
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(reader)
+	scanner := bufio.NewScanner(reader)
 
-	for _, m := range strings.Split(buf.String(), "\n") {
+	for scanner.Scan() {
+		m := scanner.Text()
 		match := strings.Split(m, ";")
 
 		if match[0] == "" || strings.HasPrefix(match[0], "#") {
