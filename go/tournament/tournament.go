@@ -61,6 +61,11 @@ func Tally(reader io.Reader, writer io.Writer) error {
 		teams[match[0]], teams[match[1]] = home, away
 	}
 
+	printScores(teams, writer)
+	return nil
+}
+
+func printScores(teams map[string]team, writer io.Writer) {
 	s := make([]formatScore, len(teams))
 	for n, t := range teams {
 		s = append(s, formatScore{
@@ -80,5 +85,4 @@ func Tally(reader io.Reader, writer io.Writer) error {
 	for _, t := range s {
 		io.WriteString(writer, t.format)
 	}
-	return nil
 }
