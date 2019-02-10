@@ -21,9 +21,9 @@ func (t *team) played() int {
 	return t.victories + t.defeats + t.ties
 }
 
-type kv struct {
-	key   string
-	value int
+type formatScore struct {
+	format string
+	score  int
 }
 
 var fmtString = "%-31s| %2d | %2d | %2d | %2d | %2d\n"
@@ -61,24 +61,24 @@ func Tally(reader io.Reader, writer io.Writer) error {
 		teams[match[0]], teams[match[1]] = home, away
 	}
 
-	s := make([]kv, len(teams))
+	s := make([]formatScore, len(teams))
 	for n, t := range teams {
-		s = append(s, kv{
+		s = append(s, formatScore{
 			fmt.Sprintf(fmtString, n, t.played(), t.victories, t.ties, t.defeats, t.score()),
 			t.score(),
 		})
 	}
 	sort.Slice(s, func(i, j int) bool {
-		a, b := s[i].value, s[j].value
+		a, b := s[i].score, s[j].score
 		if a != b {
 			return a > b
 		}
-		return s[i].key < s[j].key
+		return s[i].format < s[j].format
 	})
 
 	io.WriteString(writer, "Team                           | MP |  W |  D |  L |  P\n")
 	for _, t := range s {
-		io.WriteString(writer, t.key)
+		io.WriteString(writer, t.format)
 	}
 	return nil
 }
