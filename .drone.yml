@@ -1,6 +1,11 @@
 pipeline:
-  build:
+  build_go:
     image: registry.quan.io/dan/golang-testing
     commands:
       - go test ./go/...
       - golint -set_exit_status go/...
+  build_elixir:
+    image: elixir
+    commands:
+      - for file in elixir/**/*_test.exs; do elixir "$file"; done
+
