@@ -8,4 +8,8 @@ pipeline:
     image: elixir
     commands:
       - for file in elixir/**/*_test.exs; do elixir "$file"; done
+  build_rust:
+    image: rust
+    commands:
+      - for dir in rust/*; do (cd "$dir" && cargo test); done
 
