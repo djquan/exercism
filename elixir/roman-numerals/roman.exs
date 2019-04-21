@@ -1,5 +1,4 @@
 defmodule Roman do
-
   @doc """
   Convert the number to a roman number.
   """
@@ -19,13 +18,13 @@ defmodule Roman do
     IX: 9,
     V: 5,
     IV: 4,
-    I: 1,
+    I: 1
   ]
   |> Enum.each(fn {numeral, number} ->
-    def numeral_helper(n, acc) when n >= unquote number do
-      numeral_helper(n - (unquote number), acc <> (unquote Atom.to_string(numeral)))
+    def numeral_helper(n, acc) when n >= unquote(number) do
+      numeral_helper(n - unquote(number), acc <> unquote(Atom.to_string(numeral)))
     end
   end)
- 
+
   def numeral_helper(0, acc), do: acc
 end
