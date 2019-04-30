@@ -1,7 +1,7 @@
 defmodule Bob do
   def hey(input) do
     cond do
-      String.strip(input) == "" ->
+      String.trim(input) == "" ->
         "Fine. Be that way!"
 
       question?(input) && shouting?(input) ->
@@ -18,12 +18,12 @@ defmodule Bob do
     end
   end
 
-  def shouting?(input) do
+  defp shouting?(input) do
     String.upcase(input) == input &&
       String.downcase(input) != input
   end
 
-  def question?(input) do
+  defp question?(input) do
     String.ends_with?(input, "?")
   end
 end
