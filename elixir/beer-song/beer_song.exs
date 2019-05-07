@@ -10,32 +10,35 @@ defmodule BeerSong do
     """
   end
 
-  def verse(number) do
-    descriptor = if number == 1, do: "it", else: "one"
-
+  def verse(1) do
     """
-    #{bottle(number)} of beer on the wall, #{bottle(number)} of beer.
-    Take #{descriptor} down and pass it around, #{bottle(number - 1)} of beer on the wall.
+    1 bottle of beer on the wall, 1 bottle of beer.
+    Take it down and pass it around, no more bottles of beer on the wall.
+    """
+  end
+
+  def verse(2) do
+    """
+    2 bottles of beer on the wall, 2 bottles of beer.
+    Take one down and pass it around, 1 bottle of beer on the wall.
+    """
+  end
+
+  def verse(number) do
+    """
+    #{number} bottles of beer on the wall, #{number} bottles of beer.
+    Take one down and pass it around, #{number - 1} bottles of beer on the wall.
     """
   end
 
   @doc """
   Get the entire beer song for a given range of numbers of bottles.
   """
-  @spec lyrics(Range.t()) :: String.t()
-  def lyrics(range) do
+  def lyrics(range \\ 99..0) do
     range
-    |> Enum.map(fn n -> verse(n) end)
-    |> Enum.join("\n")
+    |> Enum.map_join("\n", fn n -> verse(n) end)
   end
 
-  @doc """
-  Get the entire beer song
-  """
-  @spec lyrics() :: String.t()
-  def lyrics, do: lyrics(99..0)
-
-  defp bottle(0), do: "no more bottles"
   defp bottle(1), do: "1 bottle"
   defp bottle(number), do: "#{number} bottles"
 end
