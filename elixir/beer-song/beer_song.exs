@@ -38,7 +38,4 @@ defmodule BeerSong do
     range
     |> Enum.map_join("\n", fn n -> verse(n) end)
   end
-
-  defp bottle(1), do: "1 bottle"
-  defp bottle(number), do: "#{number} bottles"
 end
