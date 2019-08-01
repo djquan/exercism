@@ -14,8 +14,8 @@ defmodule RobotSimulator do
 
   Valid instructions are: "R" (turn right), "L", (turn left), and "A" (advance)
   """
-  @spec simulate(robot :: any, instructions :: String.t()) :: any
-  def simulate(robot, instructions) do
+  @spec simulate(_robot :: any, _instructions :: String.t()) :: any
+  def simulate(_robot, _instructions) do
   end
 
   @doc """
@@ -23,7 +23,7 @@ defmodule RobotSimulator do
 
   Valid directions are: `:north`, `:east`, `:south`, `:west`
   """
-  @spec direction(robot :: any) :: atom
+  @spec direction(direction :: any) :: atom
   def direction(%{direction: dir}), do: dir
 
   @doc """
