@@ -6,6 +6,11 @@ steps:
   image: rust
   commands:
     - find . -name Cargo.toml -print0 | xargs -n 1 -0 cargo test --manifest-path
+- name: elixir - test
+  image: elixir
+  commands:
+    - find . -name *_test.exs -print0 | xargs -n 1 -0 elixir
+
 
 # image_pull_secrets:
 # - dockerconfigjson
