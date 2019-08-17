@@ -7,10 +7,14 @@ steps:
   commands:
     - find . -name Cargo.toml -print0 | xargs -n 1 -0 cargo test --manifest-path
 - name: elixir - test
-  image: elixir
+  image: reg.quan.io/dan/elixir:1.9
   commands:
     - find . -name *_test.exs -print0 | xargs -n 1 -0 elixir
+- name: go - test
+  image: reg.quan.io/dan/golang-testing
+  commands:
+    - go test ./go/...
+    - golint --set_exit_status go/...
 
-
-# image_pull_secrets:
-# - dockerconfigjson
+image_pull_secrets:
+- dockerconfigjson
