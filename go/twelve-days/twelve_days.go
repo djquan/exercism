@@ -6,12 +6,12 @@ import (
 	"strings"
 )
 
-type DayGift struct {
+type dayGift struct {
 	day  string
 	gift string
 }
 
-var giftList = []DayGift{
+var giftList = []dayGift{
 	{"first", "a Partridge in a Pear Tree"},
 	{"second", "two Turtle Doves"},
 	{"third", "three French Hens"},
