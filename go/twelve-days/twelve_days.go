@@ -24,7 +24,6 @@ var verses = []string{
 // Song provides the lyrics for the Twelve Days of Christmas song.
 func Song() string {
 	var buffer bytes.Buffer
-
 	for i := 1; i <= 12; i++ {
 		fmt.Fprintf(&buffer, "%v\n", Verse(i))
 	}
@@ -34,5 +33,5 @@ func Song() string {
 
 // Verse provides the appropriate lyric for the given day of Christmas.
 func Verse(n int) string {
-	return verses[n - 1]
+	return verses[n-1]
 }
