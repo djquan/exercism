@@ -6,24 +6,19 @@ import (
 	"strings"
 )
 
-type dayGift struct {
-	day  string
-	gift string
-}
-
-var giftList = []dayGift{
-	{"first", "a Partridge in a Pear Tree"},
-	{"second", "two Turtle Doves"},
-	{"third", "three French Hens"},
-	{"fourth", "four Calling Birds"},
-	{"fifth", "five Gold Rings"},
-	{"sixth", "six Geese-a-Laying"},
-	{"seventh", "seven Swans-a-Swimming"},
-	{"eighth", "eight Maids-a-Milking"},
-	{"ninth", "nine Ladies Dancing"},
-	{"tenth", "ten Lords-a-Leaping"},
-	{"eleventh", "eleven Pipers Piping"},
-	{"twelfth", "twelve Drummers Drumming"},
+var verses = []string{
+	"On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.",
+	"On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the fourth day of Christmas my true love gave to me: four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the sixth day of Christmas my true love gave to me: six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the eighth day of Christmas my true love gave to me: eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
+	"On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
 }
 
 // Song provides the lyrics for the Twelve Days of Christmas song.
@@ -39,21 +34,5 @@ func Song() string {
 
 // Verse provides the appropriate lyric for the given day of Christmas.
 func Verse(n int) string {
-	var buffer bytes.Buffer
-	result := make([]string, 0, n)
-
-	fmt.Fprintf(&buffer, "On the %v day of Christmas my true love gave to me:", giftList[n-1].day)
-
-	for i := n - 1; i >= 0; i-- {
-		if n != 1 && i == 0 {
-			result = append(result, fmt.Sprintf("and %v", giftList[i].gift))
-			break
-		}
-
-		result = append(result, giftList[i].gift)
-	}
-
-	fmt.Fprintf(&buffer, " %v.", strings.Join(result, ", "))
-
-	return buffer.String()
+	return verses[n - 1]
 }
