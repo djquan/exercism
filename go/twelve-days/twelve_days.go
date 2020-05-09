@@ -1,8 +1,6 @@
 package twelve
 
 import (
-	"bytes"
-	"fmt"
 	"strings"
 )
 
@@ -23,12 +21,12 @@ var verses = []string{
 
 // Song provides the lyrics for the Twelve Days of Christmas song.
 func Song() string {
-	var buffer bytes.Buffer
+	result := make([]string, 0, 12)
 	for i := 1; i <= 12; i++ {
-		fmt.Fprintf(&buffer, "%v\n", Verse(i))
+		result = append(result, Verse(i))
 	}
 
-	return strings.TrimSpace(buffer.String())
+	return strings.Join(result, "\n")
 }
 
 // Verse provides the appropriate lyric for the given day of Christmas.
