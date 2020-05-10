@@ -66,7 +66,7 @@ func (m Matrix) Cols() [][]int {
 	return result
 }
 
-//Set the value of an element within a matrix
+//Set sets the value of an element within a matrix
 func (m Matrix) Set(r int, c int, i int) bool {
 	if r < 0 || c < 0 {
 		return false
