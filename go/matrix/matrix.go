@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+//Matrix represents a mathematical matrix
 type Matrix [][]int
 
 //New creates a new matrix from a given string
