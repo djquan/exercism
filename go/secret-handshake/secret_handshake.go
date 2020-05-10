@@ -1,7 +1,8 @@
 package secret
 
+//Handshake takes an int and returns a set of secret phrases
 func Handshake(code uint) []string {
-	result := make([]string, 0, 0)
+	result := make([]string, 0)
 
 	if code&1 == 1 {
 		result = append(result, "wink")
