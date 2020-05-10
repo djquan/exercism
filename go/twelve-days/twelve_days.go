@@ -21,12 +21,7 @@ var verses = []string{
 
 // Song provides the lyrics for the Twelve Days of Christmas song.
 func Song() string {
-	result := make([]string, 0, 12)
-	for i := 1; i <= 12; i++ {
-		result = append(result, Verse(i))
-	}
-
-	return strings.Join(result, "\n")
+	return strings.Join(verses, "\n")
 }
 
 // Verse provides the appropriate lyric for the given day of Christmas.
