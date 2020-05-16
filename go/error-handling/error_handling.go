@@ -2,12 +2,12 @@ package erratum
 
 //Use opens a resource, calls Frob, and then closes the resource
 func Use(o ResourceOpener, input string) (err error) {
-	var r Resource
-
-	for r, err = o(); err != nil; r, err = o() {
+	r, err := o()
+	for err != nil {
 		if _, ok := err.(TransientError); !ok {
 			return err
 		}
+		r, err = o()
 	}
 	defer r.Close()
 
