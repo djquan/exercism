@@ -23,5 +23,5 @@ func Use(o ResourceOpener, input string) (err error) {
 
 	r.Frob(input)
 
-	return err
+	return nil
 }
