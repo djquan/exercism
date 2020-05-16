@@ -4,12 +4,12 @@ package erratum
 func Use(o ResourceOpener, input string) (err error) {
 	var r Resource
 
-	if r, err = o(); err != nil {
-		if _, ok := err.(TransientError); ok {
-			return Use(o, input)
+	for r, err = o(); err != nil; r, err = o() {
+		if _, ok := err.(TransientError); !ok {
+			return err
 		}
-		return err
 	}
+	defer r.Close()
 
 	defer func() {
 		if rec := recover(); rec != nil {
@@ -19,11 +19,9 @@ func Use(o ResourceOpener, input string) (err error) {
 
 			err = rec.(error)
 		}
-
-		r.Close()
 	}()
 
 	r.Frob(input)
 
-	return
+	return err
 }
