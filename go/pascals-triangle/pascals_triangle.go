@@ -1,5 +1,6 @@
 package pascal
 
+//Triangle calculates Pascal's triangle up to a given row
 func Triangle(size int) [][]int {
 	result := make([][]int, size)
 
