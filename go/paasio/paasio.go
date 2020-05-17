@@ -53,12 +53,14 @@ func (c *counter) WriteCount() (n int64, nops int) {
 	return c.nbytes, c.nops
 }
 
+//NewWriteCounter generates a NewWriteCounter, an object that tracks bytes written
 func NewWriteCounter(writer io.Writer) WriteCounter {
 	return &counter{
 		writer: writer,
 	}
 }
 
+//NewReadWriteCounter generates a NewReadWriteCounter, an object that tracks bytes written and read
 func NewReadWriteCounter(rw io.ReadWriter) ReadWriteCounter {
 	return &counter{
 		reader: rw,
@@ -66,6 +68,7 @@ func NewReadWriteCounter(rw io.ReadWriter) ReadWriteCounter {
 	}
 }
 
+//NewReadCounter generates a NewReadCounter, an object that tracks bytes read.
 func NewReadCounter(r io.Reader) ReadCounter {
 	return &counter{
 		reader: r,
