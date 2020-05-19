@@ -6,16 +6,16 @@ import (
 )
 
 type counter struct {
+	sync.Mutex
 	nbytes int64
 	nops   int
 	reader io.Reader
 	writer io.Writer
-	mutex  sync.Mutex
 }
 
 func (c *counter) Read(p []byte) (n int, err error) {
-	c.mutex.Lock()
-	defer c.mutex.Unlock()
+	c.Lock()
+	defer c.Unlock()
 
 	if n, err = c.reader.Read(p); err != nil {
 		return 0, err
@@ -27,15 +27,15 @@ func (c *counter) Read(p []byte) (n int, err error) {
 }
 
 func (c *counter) ReadCount() (n int64, nops int) {
-	c.mutex.Lock()
-	defer c.mutex.Unlock()
+	c.Lock()
+	defer c.Unlock()
 
 	return c.nbytes, c.nops
 }
 
 func (c *counter) Write(p []byte) (n int, err error) {
-	c.mutex.Lock()
-	defer c.mutex.Unlock()
+	c.Lock()
+	defer c.Unlock()
 
 	if n, err = c.writer.Write(p); err != nil {
 		return 0, err
@@ -47,8 +47,8 @@ func (c *counter) Write(p []byte) (n int, err error) {
 }
 
 func (c *counter) WriteCount() (n int64, nops int) {
-	c.mutex.Lock()
-	defer c.mutex.Unlock()
+	c.Lock()
+	defer c.Unlock()
 
 	return c.nbytes, c.nops
 }
