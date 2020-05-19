@@ -6,7 +6,7 @@ import (
 )
 
 type counter struct {
-	sync.Mutex
+	sync.RWMutex
 	nbytes int64
 	nops   int
 	reader io.Reader
@@ -27,8 +27,8 @@ func (c *counter) Read(p []byte) (n int, err error) {
 }
 
 func (c *counter) ReadCount() (n int64, nops int) {
-	c.Lock()
-	defer c.Unlock()
+	c.RLock()
+	defer c.RUnlock()
 
 	return c.nbytes, c.nops
 }
@@ -47,8 +47,8 @@ func (c *counter) Write(p []byte) (n int, err error) {
 }
 
 func (c *counter) WriteCount() (n int64, nops int) {
-	c.Lock()
-	defer c.Unlock()
+	c.RLock()
+	defer c.RUnlock()
 
 	return c.nbytes, c.nops
 }
