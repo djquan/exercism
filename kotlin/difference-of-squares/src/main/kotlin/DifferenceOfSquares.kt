@@ -1,13 +1,12 @@
 class Squares(private val n: Int) {
+    private fun Int.squared() = this * this
 
     fun sumOfSquares(): Int {
-        return (1..n).fold(0) { sum, element -> sum + (element * element)}
+        return (1..n).sumOf { it.squared() }
     }
 
     fun squareOfSum(): Int {
-        val sum = (1..n).sum()
-
-        return sum * sum
+        return (1..n).sum().squared()
     }
 
     fun difference(): Int {
