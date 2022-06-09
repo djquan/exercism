@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SquaresTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2022-06-09T18:03:39" hostname="Dans-MacBook-Pro.local" time="0.009">
+  <properties/>
+  <testcase name="squareOfSum100" classname="SquaresTest" time="0.008"/>
+  <testcase name="squareOfSum1" classname="SquaresTest" time="0.0"/>
+  <testcase name="squareOfSum5" classname="SquaresTest" time="0.0"/>
+  <testcase name="sumOfSquares100" classname="SquaresTest" time="0.001"/>
+  <testcase name="differenceOfSquares1" classname="SquaresTest" time="0.0"/>
+  <testcase name="differenceOfSquares5" classname="SquaresTest" time="0.0"/>
+  <testcase name="differenceOfSquares100" classname="SquaresTest" time="0.0"/>
+  <testcase name="sumOfSquares1" classname="SquaresTest" time="0.0"/>
+  <testcase name="sumOfSquares5" classname="SquaresTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
