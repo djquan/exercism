@@ -5,7 +5,7 @@ class Squares(private val n: Int) {
     }
 
     fun squareOfSum(): Int {
-        val sum = (1..n).fold(0) { sum, element -> sum + element}
+        val sum = (1..n).sum()
 
         return sum * sum
     }
